@@ -1,0 +1,15 @@
+{
+	"characterLvls":{
+		"brute":{
+			"level1": 10,
+	"	level2": 12,
+		"level3": 14,
+		"level4": 16,
+		"level5": 18,
+		"level6": 20,
+		"level7": 22,
+		"level8": 24,
+		"level9": 26
+		}
+	}
+}

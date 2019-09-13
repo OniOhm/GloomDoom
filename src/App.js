@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import '../node_modules/bulma';
+import initState from './initialstate.js';
+import Navbar from './components/navabar.js';
+import CharacterForm from './components/CharacterForm.js';
+class App extends React.Component{
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	constructor(props){
+		super(props);
+		const appState = {...initState};
+	};
+
+      render(){
+      	return(
+        <div>
+        <Navbar></Navbar>
+          <div className='level'>
+            <CharacterForm
+             health={ initState.health }
+             currrentGold={0}>
+              </CharacterForm>
+          </div>
+        </div>  
+        )  
+        }
 }
 
 export default App;
