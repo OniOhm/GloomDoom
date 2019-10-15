@@ -1,27 +1,32 @@
 import React from 'react';
+import {BrowserRouter as Router,Route,Link } from 'react-router-dom';
 import './App.css';
 import '../node_modules/bulma';
 import initState from './initialstate.js';
-import Navbar from './components/navabar.js';
 import CharacterForm from './components/CharacterForm.js';
+
 class App extends React.Component{
 
 	constructor(props){
 		super(props);
-		const appState = {...initState};
 	};
 
       render(){
       	return(
         <div>
-        <Navbar></Navbar>
-          <div className='level'>
-            <CharacterForm
-             health={ initState.health }
-             currrentGold={0}>
-              </CharacterForm>
-          </div>
-        </div>  
+              <Router>
+
+    <div className='navbar is-danger'>
+      <div className='navbar-start'>
+        <Link className='navbar-item'>G&Doom</Link>
+        <Link to="/Character" className='navbar-item'>Character</Link>
+        <a className='navbar-item'>Store</a>
+        <a className='navbar-item'>Encounter</a>
+      </div>
+    </div>
+          <Route path="/Character" component={CharacterForm} />
+    </Router>
+    </div>
         )  
         }
 }
