@@ -1,8 +1,7 @@
 import React,{useState,useEffect,useReducer } from 'react';
 import '../App.css';
 import initState from '../initialstate';
-
-
+import Modifier from './Modifier';
 function rootReducer(state,action){
 	let newState={...state};
 	switch(action.type){
@@ -49,8 +48,11 @@ function CharacterForm(props){
 
   	
 	return(	
+		<div>
 	 <h1>Is working</h1>
-		)
+		<Modifier></Modifier>
+	 </div>
+	 )
 }
 
 export default CharacterForm;

@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router,Route,Link } from 'react-router-dom';
 import './App.css';
 import '../node_modules/bulma';
-import initState from './initialstate.js';
+// import initState from './initialstate.js';
 import CharacterForm from './components/CharacterForm.js';
 
 class App extends React.Component{
@@ -18,7 +18,7 @@ class App extends React.Component{
 
     <div className='navbar is-danger'>
       <div className='navbar-start'>
-        <Link className='navbar-item'>G&Doom</Link>
+        <p className='navbar-item'>G&Doom</p>
         <Link to="/Character" className='navbar-item'>Character</Link>
         <a className='navbar-item'>Store</a>
         <a className='navbar-item'>Encounter</a>
