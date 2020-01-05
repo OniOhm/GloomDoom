@@ -5,7 +5,7 @@ const CharacterStats = {
     },
     Spellweaver: {
         level1: 9,
-        level2: 4,
+        level2: 12,
     }
 }
 
