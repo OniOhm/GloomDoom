@@ -1,58 +1,67 @@
-import React,{useState,useEffect,useReducer } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import '../App.css';
-import initState from '../initialstate';
 import Modifier from './Modifier';
-function rootReducer(state,action){
-	let newState={...state};
-	switch(action.type){
-		case 'GetHealth':
-			newState.health= 12;
-			newState.maxHealth = 12;
-			return newState;
-		case 'INCREMENT_HEALTH':
-		if(state.health == state.maxHealth){
-			return newState;
-		}else{
-			newState.health = newState.health +1;
-			return newState;
-		}
-		case 'DECREMENT_HEALTH':
-		if(state.health == 0){
-			return newState;
-		}else{
-			newState.health = newState.health - 1;
-			return newState;
-		}
-		case 'RESET_XP':
-			newState.xp = 0;
-			return newState;
-		case 'INCREMENT_XP':
-			newState.xp = newState.xp + 1;
-			return newState;
-		case 'DECEMENT_XP':
-			newState.xp = newState.xp - 1;
-			return newState.xp
+import CharacterStats from '../data/CharacterStats';
+
+const initState = {
+	maxHealth: 0,
+	currenthealth: 0
+}
+function healthReducer(state, action) {
+	switch (action.type) {
+		case 'setHealth':
+		case 'decrementHealth':
+			let newDecState = { ...state }
+			newDecState.currenthealth -= 1
+			return newDecState
+		case 'incrementHealth':
+			let newIncState = { ...state }
+			newIncState.currenthealth += 1
+			return newIncState
 		default:
-			break;
-			console.log('No actions sent check Reducer');
+			throw new Error();
 	}
 }
 
 
 
-function CharacterForm(props){
-// function that sets the character health based on the level of the character
-// form onChange binding
+function CharacterForm(props) {
+	// function that sets the character health based on the level of the character
+	// form onChange binding
+	const [level, onLevelChange] = useState(0);
+	const [charClass, onClassChange] = useState(0);
+	const [name, onNameChange] = useState("");
+	const [state, dispatch] = useReducer(healthReducer, initState);
 
 
-
-  	
-	return(	
+	return (
 		<div>
-	 <h1>Is working</h1>
-		<Modifier></Modifier>
-	 </div>
-	 )
+			<h1>{name}</h1>
+			<form onSubmit={(e) => { e.preventDefault() }}>
+				<div className='level'>
+
+					<label className='label'>Name</label>
+					<input className='input' onChange={(e) => { onNameChange(e.target.value) }}></input>
+					<label className>Level</label>
+					<select className='select' onChange={(e) => { onLevelChange(e.target.value) }}>
+						<option value='1'>1</option>
+						<option value='2'>2</option>
+					</select>
+					<div className='field'></div>
+					<div className='control'>
+						<select className='select' onChange={(e) => { onClassChange(e.target.value) }}>
+							<option value='Brute'>Brute</option>
+							<option value='Spellweaver'>Spellweaver</option>
+						</select>
+					</div>
+				</div>
+				<label>health</label>
+				<h1>{state.health}</h1>
+				<button className='button is-link' onClick={() => dispatch({ type: 'decrementHealth' })}>-</button>
+				<button className='button is-link' onClick={() => dispatch({ type: 'incrementHealth' })}>+</button>
+			</form>
+		</div >
+	)
 }
 
 export default CharacterForm;
