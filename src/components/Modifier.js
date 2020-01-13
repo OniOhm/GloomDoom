@@ -8,6 +8,8 @@ import Plus_2 from '../assets/Plus_2.png';
 import Attack_mod_front from '../assets/Attack_mod_front.jpg';
 import Miss from '../assets/Miss.png';
 import Crit from '../assets/Crit.png';
+
+
 // The  modifier deck can only consist of 20 cards at default
 // As the method runs the type of card needs to be recorded accordingly to simulate cards being pulled
 // change the range of the one off cards.
